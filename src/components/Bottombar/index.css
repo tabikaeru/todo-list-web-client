@@ -1,0 +1,21 @@
+.has-text-centered
+{
+    text-align: center;
+}
+
+.footer
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 50px;
+
+    color: #fff;
+    background-color: #333;
+}
+
+.content
+{
+    padding: 10px;
+}

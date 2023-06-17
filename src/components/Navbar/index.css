@@ -1,0 +1,59 @@
+/* Navbar */
+.navbar
+{
+    padding: 16px;
+
+    color: #fff;
+    background-color: #333;
+}
+
+/* Navbar Brand */
+.navbar-brand
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 8px;
+}
+
+.navbar-brand p
+{
+    font-size: 24px;
+}
+
+/* Navbar Burger */
+.navbar-burger
+{
+    display: none;
+}
+
+/* Navbar Menu */
+.navbar-menu
+{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.navbar-menu.is-active
+{
+    display: flex;
+}
+
+/* Container */
+.container
+{
+    /* padding: 0 10px; */
+}
+
+/* Navbar Item */
+.navbar-item
+{
+    /* padding: 6px; */
+    color: #fff;
+}
+
+.navbar-item:hover
+{
+    background-color: #555;
+}

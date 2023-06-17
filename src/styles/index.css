@@ -1,0 +1,39 @@
+#app_container
+{
+    display: grid;
+
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+
+    grid-template-areas: 'header'
+    'content'
+    'footer';
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 1fr auto;
+}
+
+#header_container
+{
+    grid-area: header;
+}
+
+#page_container
+{
+    grid-area: content;
+}
+
+#footer_container
+{
+    grid-area: footer;
+}
+
+#loading_container
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+}
