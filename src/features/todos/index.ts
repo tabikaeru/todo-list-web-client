@@ -1,1 +1,5 @@
 export * from './pages/Home'
+export * from './pages/CreateTask'
+export * from './pages/EditTask'
+export * from './pages/CreateCategory'
+export * from './pages/DeleteCategory'

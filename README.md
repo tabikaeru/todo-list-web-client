@@ -57,7 +57,13 @@ src
 |
 +-- components        # shared components used across the entire application
 |
++-- config            # all the global configuration, env variables etc. get exported from here and used in the app
+|
 +-- features          # feature based modules
+|
++-- lib               # re-exporting different libraries preconfigured for the application
+|
++-- providers         # all of the application providers
 |
 +-- routes            # routes configuration
 |
@@ -71,15 +77,17 @@ A feature could have the following structure:
 ```sh
 src/features/awesome-feature
 |
-+-- services    # utility functions for a specific feature
++-- services     # utility functions for a specific feature
 |
-+-- components  # components scoped to a specific feature
++-- components   # components scoped to a specific feature
 |
-+-- pages       # root components for a specific feature pages
++-- pages        # root components for a specific feature pages
 |
-+-- types       # typescript types for TS specific feature domain
++-- repositories # responsible for exchanging data with the database and performing data persistence and retrieval. 
 |
-+-- index.ts    # entry point for the feature, it should serve as the public API of the given feature and exports everything that should be used outside the feature
++-- entities     # location where specific data models for the feature are stored. 
+|
++-- index.ts     # entry point for the feature, it should serve as the public API of the given feature and exports everything that should be used outside the feature
 ```
 
 Everything from a feature should be exported from the `index.ts` file which behaves as the public API of the feature.
@@ -91,3 +99,5 @@ You should import stuff from other features only by using:
 and not
 
 `import {AwesomeComponent} from "~/features/awesome-feature/components/AwesomeComponent`
+
+
