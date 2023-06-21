@@ -1,6 +1,6 @@
 import './index.css'
 
-export const Bottombar = {
+export const Bottombar = () => ({
   render: async () => {
     const view = /*html*/ `
         <footer class="footer">
@@ -15,4 +15,4 @@ export const Bottombar = {
   },
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   afterRender: async () => {},
-}
+})
