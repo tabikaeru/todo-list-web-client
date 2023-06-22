@@ -19,4 +19,9 @@ describe('Formatter', () => {
     const request = Formatter.parseRequestURL()
     expect(request).toEqual({ resource: 'updateTask', id: '123' })
   })
+  test('parseRequestURL should return correct object for resource with ID URL verb', () => {
+    window.location.href = 'http:localhost:3000/#/deleteTask/123/foo'
+    const request = Formatter.parseRequestURL()
+    expect(request).toEqual({ resource: 'deleteTask', id: '123', verb: 'foo' })
+  })
 })
