@@ -1,6 +1,6 @@
 import './style.css'
 
-export const Error404 = {
+export const Error404Page = () => ({
   render: async () => {
     const view = /*html*/ `
             <div id="error404_container">
@@ -13,4 +13,4 @@ export const Error404 = {
   },
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   afterRender: async () => {},
-}
+})

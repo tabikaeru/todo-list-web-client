@@ -1,0 +1,153 @@
+delete-category-section
+{
+    width: 100%;
+    height: 100%;
+
+    background-color: #eee ;
+}
+
+h1
+{
+    text-align: center;
+}
+
+
+
+.delete-category-description
+{
+    height: 300px;
+}
+
+.delete-category-control-area
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary-control-section
+{
+    display: flex;
+}
+
+.cancel-delete-category-button-wrapper
+{
+    padding-left: 4px;
+}
+
+.execute-delete-category-button-wrapper
+{
+    padding-right: 4px;
+}
+.execute-delete-category-button
+{
+    padding: 10px 20px;
+
+    cursor: pointer;
+
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffa500;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+}
+
+.execute-delete-category-button:hover
+{
+    background-color: #ff8c00   ;
+}
+
+
+.cancel-delete-category-button
+{
+    padding: 10px 20px;
+
+    cursor: pointer;
+
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    background-color: #ddd;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+}
+
+.cancel-delete-category-button:hover
+{
+    background-color: #ccc;
+}
+
+
+.delete-category-page-container
+{
+    display: grid;
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+
+    grid-template-areas: 'title'
+    'content'
+    'control';
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px .1fr 100px;
+}
+
+.delete-category-title-container
+{
+    grid-area: title;
+}
+
+.delete-category-content-container
+{
+    display: flex;
+    justify-content: center;
+
+    grid-area: content;
+}
+.delete-category-content-container-inner
+{
+    display: flex;
+    justify-content: center;
+
+    grid-area: content;
+}
+
+.delete-category-control-container
+{
+    grid-area: control;
+}
+
+
+@media screen and (max-width: 768px)
+{
+    .cancel-delete-category-button
+    {
+        font-size: 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 32px;
+
+        border-radius: 32px;
+        box-shadow: none;
+    }
+    .execute-delete-category-button
+    {
+        font-size: 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 32px;
+
+        border-radius: 32px;
+        box-shadow: none;
+    }
+    .delete-category-content-container-inner
+    {
+        width: 80%;
+    }
+}

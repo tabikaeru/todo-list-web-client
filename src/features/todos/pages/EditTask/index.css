@@ -1,0 +1,177 @@
+create-task-section
+{
+    width: 100%;
+    height: 100%;
+
+    background-color: #eee ;
+}
+
+h1
+{
+    text-align: center;
+}
+
+.edit-task-todo-form
+{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.form-item
+{
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+select
+{
+    display: block;
+}
+
+.edit-task-submit-wrapper
+{
+    padding-right: 4px;
+}
+
+textarea
+{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+}
+
+select
+{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+}
+
+.edit-task-submit
+{
+    padding: 10px;
+
+    cursor: pointer;
+
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffa500;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+}
+
+.edit-task-submit:hover
+{
+    background-color: #ff8c00   ;
+}
+
+.edit-task-description
+{
+    height: 300px;
+}
+
+
+.edit-task-control-area
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.primary-control-section
+{
+    display: flex;
+}
+
+.secondary-control-section
+
+.back-task-edit-button-wrapper
+{
+    padding-left: 4px;
+}
+
+.back-task-edit-button
+{
+    padding: 10px 20px;
+
+    cursor: pointer;
+
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    background-color: #ddd;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+}
+
+.back-task-edit-button:hover
+{
+    background-color: #ccc;
+}
+
+.delete-task-edit-button-wrapper
+{
+    padding-right: 4px;
+}
+
+
+.delete-task-edit-button
+{
+    padding: 10px 20px;
+
+    cursor: pointer;
+
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: #f00;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+}
+
+.delete-task-edit-button:hover
+{
+    background-color: #c00;
+}
+
+@media screen and (max-width: 768px)
+{
+    .edit-task-todo-form
+    {
+        width: 80%;
+    }
+    .back-task-edit-button
+    {
+        font-size: 16px;
+
+        width: 62px;
+        height: 32px;
+        padding: 0;
+
+        border-radius: 32px;
+        box-shadow: none;
+    }
+
+    .edit-task-submit
+    {
+        font-size: 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 32px;
+
+        border-radius: 32px;
+    }
+    .delete-task-edit-button
+    {
+        font-size: 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 32px;
+
+        border-radius: 32px;
+        box-shadow: none;
+    }
+}

@@ -1,5 +1,11 @@
 import '~/styles/reset.css'
 import '~/styles/index.css'
 import { router } from '~/routes'
+import { initializeDB } from '~/lib/indexedDB'
 
-router()
+const app = () => {
+  initializeDB()
+  router()
+}
+
+app()
