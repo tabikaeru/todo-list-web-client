@@ -1,9 +1,9 @@
 export const textMaxInputObserver = (textElementId: string, warningElementId: string, maxLength: number) => {
-  const titleTextInput = document.getElementById(textElementId) as HTMLInputElement | HTMLTextAreaElement
-  titleTextInput.maxLength = maxLength
-  titleTextInput.addEventListener('input', () => {
-    if (titleTextInput.value.length >= titleTextInput.maxLength) {
-      titleTextInput.value = titleTextInput.value.slice(0, titleTextInput.maxLength)
+  const textInput = document.getElementById(textElementId) as HTMLInputElement | HTMLTextAreaElement
+  textInput.maxLength = maxLength
+  textInput.addEventListener('input', () => {
+    if (textInput.value.length >= textInput.maxLength) {
+      textInput.value = textInput.value.slice(0, textInput.maxLength)
       document.getElementById(warningElementId).textContent = `${maxLength}文字以下で入力してください`
     } else {
       document.getElementById(warningElementId).textContent = ''
