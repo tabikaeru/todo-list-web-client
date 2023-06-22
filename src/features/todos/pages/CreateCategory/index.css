@@ -71,6 +71,8 @@ select
 .create-category-control-area
 {
     display: flex;
+
+    padding-bottom: 32px;
 }
 
 .primary-control-section
@@ -132,6 +134,10 @@ select
         justify-content: center;
 
         height: 32px;
+        padding-top: 0;
+        padding-right: 10px;
+        padding-bottom: 0;
+        padding-left: 10px;
 
         border-radius: 32px;
     }

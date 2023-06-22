@@ -46,13 +46,14 @@ export const DeleteCategoryPage = () => ({
     const cancelButton = document.getElementById('cancel-delete-category-button') as HTMLDivElement
     const tasks = await getTasks()
     const selectedCategoryTasks = tasks.filter((task) => task.categoryIDs[0] === categoryId)
-    selectedCategoryTasks.forEach(async (task) => {
-      await deleteTask(task.id)
-    })
 
     executeButton.onclick = async (event) => {
       event.preventDefault()
       await deleteCategory(categoryId)
+      selectedCategoryTasks.forEach(async (task) => {
+        await deleteTask(task.id)
+      })
+
       window.history.back()
     }
     cancelButton.onclick = async (event) => {

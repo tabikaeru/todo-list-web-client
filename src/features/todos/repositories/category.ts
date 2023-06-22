@@ -1,5 +1,5 @@
 import { openDB } from '~/lib/indexedDB'
-import { Category, CreateCategory, UpdateCategory } from '../entities/catagory'
+import { Category, CreateCategory, UpdateCategory } from '../entities/category'
 import { generateRandomId } from '~/utils/id'
 
 const STORE_NAME = 'categories'
