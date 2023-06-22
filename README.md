@@ -77,8 +77,6 @@ A feature could have the following structure:
 ```sh
 src/features/awesome-feature
 |
-+-- services     # utility functions for a specific feature
-|
 +-- components   # components scoped to a specific feature
 |
 +-- pages        # root components for a specific feature pages

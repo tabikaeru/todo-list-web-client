@@ -1,9 +1,13 @@
-export type Task = {
+import { DndBaseType } from '~/entities/dnd'
+
+export const MAX_TITLE_LENGTH = 20
+export const MAX_DESCRIPTION_LENGTH = 500
+
+export interface Task extends DndBaseType {
   id: string
   title: string
   description: string
-  categoryIDs: string[] //MEMO: 現在は一つのみ
-  completed: boolean
+  groupIDs: string[] //MEMO: 現在は一つのみ
   updatedAt: Date
   createdAt: Date
 }

@@ -1,7 +1,4 @@
 export const Formatter = {
-  // --------------------------------
-  //  Parse a url and break it into resource, id and verb
-  // --------------------------------
   parseRequestURL: () => {
     const url = location.hash.slice(1) || '/'
     const r = url.split('/')

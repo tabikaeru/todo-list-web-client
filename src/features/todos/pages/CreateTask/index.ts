@@ -1,14 +1,15 @@
 import './index.css'
-import { CreateTask } from '../../entities/task'
-import { createTask } from '../../repositories/task'
-import { getCategories } from '../../repositories/category'
+import { CreateTask, MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from '../../entities/task'
+import { createTask, getTasks } from '../../repositories/task'
+import { getGroups } from '../../repositories/group'
 import { Formatter } from '~/utils/format'
+import { textMaxInputObserver, clickBackButtonsObserver } from '~/utils/element'
 
 export const CreateTaskPage = () => ({
   render: async () => {
-    const categories = (await getCategories()).sort((a, b) => a.updatedAt.getTime() - b.updatedAt.getTime())
+    const groups = (await getGroups()).sort((a, b) => b.order - a.order)
     const request = Formatter.parseRequestURL()
-    const categoryId = request.id
+    const groupId = request.id
 
     const view = /*html*/ `  
             <section class="create-task-section">  
@@ -17,16 +18,18 @@ export const CreateTaskPage = () => ({
                 <div class="form-item">  
                   <label for="create-task-title">タイトル</label>    
                   <input type="text" id="create-task-title" name="create-task-title" required>    
+                  <div id="title-edit-error-message" class="edit-error-message"></div>  
                 </div>  
                 <div class="form-item">  
                   <label for="create-task-description">詳細</label>    
-                  <textarea id="create-task-description" class="create-task-description" name="create-task-description" required></textarea>    
+                  <textarea id="create-task-description" class="create-task-description" name="create-task-description"></textarea>    
+                  <div id="description-edit-error-message" class="edit-error-message"></div>  
                 </div>  
                 <div class="form-item">  
-                  <label for="create-task-category">カテゴリー</label>    
-                  <select id="create-task-category" name="create-task-category">    
-                    ${categories
-                      .map((category) => /*html*/ `<option  value="${category.id}" ${categoryId === category.id ? 'selected' : ''} >${category.title}</option>`)
+                  <label for="create-task-group">グループ</label>    
+                  <select id="create-task-group" name="create-task-group">    
+                    ${groups
+                      .map((group) => /*html*/ `<option  value="${group.id}" ${groupId === group.id ? 'selected' : ''} >${group.title}</option>`)
                       .join('\n ')}  
                   </select>    
                 </div>  
@@ -46,27 +49,29 @@ export const CreateTaskPage = () => ({
     return view
   },
   afterRender: async () => {
+    const tasks = (await getTasks()).sort((a, b) => a.order - b.order)
+
+    textMaxInputObserver('create-task-title', 'title-edit-error-message', MAX_TITLE_LENGTH)
+    textMaxInputObserver('create-task-description', 'description-edit-error-message', MAX_DESCRIPTION_LENGTH)
+
     const form = document.getElementById('crate-task-form')
     form.addEventListener('submit', async (e) => {
       e.preventDefault()
       const title = (document.getElementById('create-task-title') as HTMLInputElement)?.value as string
       const description = (document.getElementById('create-task-description') as HTMLInputElement).value as string
-      const categoryId = (document.getElementById('create-task-category') as HTMLSelectElement).value as string
+      const groupId = (document.getElementById('create-task-group') as HTMLSelectElement).value as string
 
+      const maxOrder = tasks.length > 0 ? Math.max(...tasks.map((group) => group.order)) : -1
       const createdTask: CreateTask = {
         title: title,
         description: description,
-        categoryIDs: [categoryId],
-        completed: false,
+        groupIDs: [groupId],
+        order: maxOrder + 1,
       }
       await createTask(createdTask)
       window.history.back()
     })
 
-    const backButton = document.getElementById('back-create-task-button')
-    backButton.addEventListener('click', (e) => {
-      e.preventDefault()
-      window.history.back()
-    })
+    clickBackButtonsObserver('back-create-task-button')
   },
 })
