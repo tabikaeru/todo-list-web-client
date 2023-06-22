@@ -111,7 +111,7 @@ const reorderDifferentEmptyDestination = async <T extends DndBaseType>(
 
   const updatedDocument: UpdatedT = {
     ...draggedDocument,
-    categoryIDs: [droppedCollectionId],
+    groupIDs: [droppedCollectionId],
     order: 0,
   }
   await updateDocument(draggedDocument.id, updatedDocument)
@@ -170,7 +170,7 @@ export const useDnd = <T extends DndBaseType, U extends DndBaseType>(
     })
   })
 
-  //MEMO: Category side
+  //MEMO: Group side
   collectionElements.forEach((collectionElement: HTMLDivElement) => {
     collectionElement.draggable = true
 
@@ -216,7 +216,7 @@ export const useDnd = <T extends DndBaseType, U extends DndBaseType>(
         return
       }
 
-      //MEMO: category -> category
+      //MEMO: group -> group
       await reorderSameDestination(draggedElementId, droppedCollectionId, draggedCollectionIndex, droppedCollectionIndex, collections, updateCollection)
       refreshPage()
     })

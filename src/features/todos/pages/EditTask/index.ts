@@ -2,7 +2,7 @@ import './index.css'
 import { UpdateTask, MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from '../../entities/task'
 import { Modal } from '~/components/Modal'
 import { updateTask, getTask, deleteTask } from '../../repositories/task'
-import { getCategories } from '../../repositories/category'
+import { getGroups } from '../../repositories/group'
 import { Formatter } from '~/utils/format'
 import { textMaxInputObserver, clickBackButtonsObserver } from '~/utils/element'
 const MODAL_ID = 'delete-task-edit-modal'
@@ -10,7 +10,7 @@ const MODEL_OPEN_BUTTON_ID = 'delete-task-edit-button'
 
 export const EditTaskPage = () => ({
   render: async () => {
-    const categories = (await getCategories()).sort((a, b) => a.updatedAt.getTime() - b.updatedAt.getTime())
+    const groups = (await getGroups()).sort((a, b) => a.updatedAt.getTime() - b.updatedAt.getTime())
     const request = Formatter.parseRequestURL()
     const taskId = request.id
     const task = await getTask(taskId)
@@ -37,14 +37,11 @@ export const EditTaskPage = () => ({
                   <textarea id="edit-task-description" class="edit-task-description" name="edit-task-description">${task.description}</textarea>  
                   <div id="description-edit-error-message" class="edit-error-message"></div>  
                 </div>
-                <label for="create-task-category">カテゴリー</label>  
+                <label for="create-task-group">グループ</label>  
                 <div class="form-item">  
-                  <select id="create-task-category" name="create-task-category">  
-                    ${categories
-                      .map(
-                        (category) =>
-                          /*html*/ `<option  value="${category.id}" ${task.categoryIDs[0] === category.id ? 'selected' : ''} >${category.title}</option>`
-                      )
+                  <select id="create-task-group" name="create-task-group">  
+                    ${groups
+                      .map((group) => /*html*/ `<option  value="${group.id}" ${task.groupIDs[0] === group.id ? 'selected' : ''} >${group.title}</option>`)
                       .join('\n ')}
                   </select>  
                 </div>
@@ -90,14 +87,14 @@ export const EditTaskPage = () => ({
     form.addEventListener('submit', async (e) => {
       const title = (document.getElementById('edit-task-title') as HTMLInputElement)?.value as string
       const description = (document.getElementById('edit-task-description') as HTMLInputElement).value as string
-      const categoryId = (document.getElementById('create-task-category') as HTMLSelectElement).value as string
+      const groupId = (document.getElementById('create-task-group') as HTMLSelectElement).value as string
 
       e.preventDefault()
 
       const updatedTask: UpdateTask = {
         title: title,
         description: description,
-        categoryIDs: [categoryId],
+        groupIDs: [groupId],
         order: task.order,
         createdAt: task.createdAt,
       }

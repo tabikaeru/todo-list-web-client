@@ -1,17 +1,17 @@
 import { HomePage } from '~/features/todos'
 import { Error404Page } from '~/features/error'
-import { CreateTaskPage, EditTaskPage, CreateCategoryPage, DeleteCategoryPage, EditCategoryPage } from '~/features/todos'
+import { CreateTaskPage, EditTaskPage, CreateGroupPage, DeleteGroupPage, EditGroupPage } from '~/features/todos'
 import { Navbar } from '~/components/Navbar'
 import { Bottombar } from '~/components/Bottombar'
-import { Formatter } from '~/utils/format.js'
+import { Formatter } from '~/utils/format'
 
 const routes = {
   '/': HomePage,
   '/createTask/:id': CreateTaskPage,
   '/editTask/:id': EditTaskPage,
-  '/createCategory': CreateCategoryPage,
-  '/deleteCategory/:id': DeleteCategoryPage,
-  '/editCategory/:id': EditCategoryPage,
+  '/createGroup': CreateGroupPage,
+  '/deleteGroup/:id': DeleteGroupPage,
+  '/editGroup/:id': EditGroupPage,
 }
 
 export const useRouter = () => {

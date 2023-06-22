@@ -7,7 +7,7 @@ export interface Task extends DndBaseType {
   id: string
   title: string
   description: string
-  categoryIDs: string[] //MEMO: 現在は一つのみ
+  groupIDs: string[] //MEMO: 現在は一つのみ
   updatedAt: Date
   createdAt: Date
 }

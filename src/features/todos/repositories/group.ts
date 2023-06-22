@@ -1,23 +1,23 @@
 import { openDB } from '~/lib/indexedDB'
-import { Category, CreateCategory, UpdateCategory } from '../entities/category'
+import { Group, CreateGroup, UpdateGroup } from '../entities/group'
 import { generateRandomId } from '~/utils/id'
 
-const STORE_NAME = 'categories'
+const STORE_NAME = 'groups'
 
-export const getCategory = async (categoryId: string): Promise<Category | undefined> => {
+export const getGroup = async (groupId: string): Promise<Group | undefined> => {
   try {
     const db = await openDB()
     const transaction = db.transaction([STORE_NAME], 'readonly')
     const objectStore = transaction.objectStore(STORE_NAME)
 
-    const request = objectStore.get(categoryId)
+    const request = objectStore.get(groupId)
 
     return new Promise((resolve, reject) => {
       request.onsuccess = () => {
         resolve(request.result)
       }
       request.onerror = () => {
-        reject(new Error('Error getting category item from indexedDB instance'))
+        reject(new Error('Error getting group item from indexedDB instance'))
       }
     })
   } catch (error) {
@@ -25,7 +25,7 @@ export const getCategory = async (categoryId: string): Promise<Category | undefi
   }
 }
 
-export const getCategories = async (): Promise<Category[]> => {
+export const getGroups = async (): Promise<Group[]> => {
   try {
     const db = await openDB()
     const transaction = db.transaction([STORE_NAME], 'readonly')
@@ -39,7 +39,7 @@ export const getCategories = async (): Promise<Category[]> => {
       }
 
       request.onerror = () => {
-        reject(new Error('Error getting category items from indexedDB instance'))
+        reject(new Error('Error getting group items from indexedDB instance'))
       }
     })
   } catch (error) {
@@ -47,7 +47,7 @@ export const getCategories = async (): Promise<Category[]> => {
   }
 }
 
-export const createCategory = async (category: CreateCategory): Promise<void> => {
+export const createGroup = async (group: CreateGroup): Promise<void> => {
   try {
     const db = await openDB()
     const transaction = db.transaction([STORE_NAME], 'readwrite')
@@ -55,13 +55,13 @@ export const createCategory = async (category: CreateCategory): Promise<void> =>
     const id = generateRandomId()
     const now = new Date()
 
-    const newCategory: Category = {
-      ...category,
+    const newGroup: Group = {
+      ...group,
       id,
       updatedAt: now,
       createdAt: now,
     }
-    const request = objectStore.add(newCategory)
+    const request = objectStore.add(newGroup)
 
     return new Promise((resolve, reject) => {
       request.onsuccess = () => {
@@ -69,7 +69,7 @@ export const createCategory = async (category: CreateCategory): Promise<void> =>
       }
 
       request.onerror = () => {
-        reject(new Error('Error adding category item to indexedDB instance'))
+        reject(new Error('Error adding group item to indexedDB instance'))
       }
     })
   } catch (error) {
@@ -77,7 +77,7 @@ export const createCategory = async (category: CreateCategory): Promise<void> =>
   }
 }
 
-export const updateCategory = async (id: string, category: UpdateCategory): Promise<void> => {
+export const updateGroup = async (id: string, group: UpdateGroup): Promise<void> => {
   try {
     const db = await openDB()
     const transaction = db.transaction([STORE_NAME], 'readwrite')
@@ -85,13 +85,13 @@ export const updateCategory = async (id: string, category: UpdateCategory): Prom
 
     const now = new Date()
 
-    const newCategory: Category = {
-      ...category,
+    const newGroup: Group = {
+      ...group,
       id,
       updatedAt: now,
     }
 
-    const request = objectStore.put(newCategory)
+    const request = objectStore.put(newGroup)
 
     return new Promise((resolve, reject) => {
       request.onsuccess = () => {
@@ -99,7 +99,7 @@ export const updateCategory = async (id: string, category: UpdateCategory): Prom
       }
 
       request.onerror = () => {
-        reject(new Error('Error updating category item in indexedDB instance'))
+        reject(new Error('Error updating group item in indexedDB instance'))
       }
     })
   } catch (error) {
@@ -107,13 +107,13 @@ export const updateCategory = async (id: string, category: UpdateCategory): Prom
   }
 }
 
-export const deleteCategory = async (categoryId: string): Promise<void> => {
+export const deleteGroup = async (groupId: string): Promise<void> => {
   try {
     const db = await openDB()
     const transaction = db.transaction([STORE_NAME], 'readwrite')
     const objectStore = transaction.objectStore(STORE_NAME)
 
-    const request = objectStore.delete(categoryId)
+    const request = objectStore.delete(groupId)
 
     return new Promise((resolve, reject) => {
       request.onsuccess = () => {
@@ -121,7 +121,7 @@ export const deleteCategory = async (categoryId: string): Promise<void> => {
       }
 
       request.onerror = () => {
-        reject(new Error('Error deleting category item from indexedDB instance'))
+        reject(new Error('Error deleting group item from indexedDB instance'))
       }
     })
   } catch (error) {

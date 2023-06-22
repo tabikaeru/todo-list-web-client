@@ -1,4 +1,4 @@
-delete-category-section
+delete-group-section
 {
     width: 100%;
     height: 100%;
@@ -13,12 +13,12 @@ h1
 
 
 
-.delete-category-description
+.delete-group-description
 {
     height: 300px;
 }
 
-.delete-category-control-area
+.delete-group-control-area
 {
     display: flex;
     align-items: center;
@@ -30,16 +30,16 @@ h1
     display: flex;
 }
 
-.cancel-delete-category-button-wrapper
+.cancel-delete-group-button-wrapper
 {
     padding-left: 4px;
 }
 
-.execute-delete-category-button-wrapper
+.execute-delete-group-button-wrapper
 {
     padding-right: 4px;
 }
-.execute-delete-category-button
+.execute-delete-group-button
 {
     padding: 10px 20px;
 
@@ -52,13 +52,13 @@ h1
     box-shadow: 1px 1px 3px rgba(0,0,0,.3);
 }
 
-.execute-delete-category-button:hover
+.execute-delete-group-button:hover
 {
     background-color: #ff8c00   ;
 }
 
 
-.cancel-delete-category-button
+.cancel-delete-group-button
 {
     padding: 10px 20px;
 
@@ -71,13 +71,13 @@ h1
     box-shadow: 1px 1px 3px rgba(0,0,0,.3);
 }
 
-.cancel-delete-category-button:hover
+.cancel-delete-group-button:hover
 {
     background-color: #ccc;
 }
 
 
-.delete-category-page-container
+.delete-group-page-container
 {
     display: grid;
     overflow: hidden;
@@ -92,19 +92,19 @@ h1
     grid-template-rows: 100px .1fr 100px;
 }
 
-.delete-category-title-container
+.delete-group-title-container
 {
     grid-area: title;
 }
 
-.delete-category-content-container
+.delete-group-content-container
 {
     display: flex;
     justify-content: center;
 
     grid-area: content;
 }
-.delete-category-content-container-inner
+.delete-group-content-container-inner
 {
     display: flex;
     justify-content: center;
@@ -112,7 +112,7 @@ h1
     grid-area: content;
 }
 
-.delete-category-control-container
+.delete-group-control-container
 {
     grid-area: control;
 }
@@ -120,7 +120,7 @@ h1
 
 @media screen and (max-width: 768px)
 {
-    .cancel-delete-category-button
+    .cancel-delete-group-button
     {
         font-size: 16px;
 
@@ -133,7 +133,7 @@ h1
         border-radius: 32px;
         box-shadow: none;
     }
-    .execute-delete-category-button
+    .execute-delete-group-button
     {
         font-size: 16px;
 
@@ -146,7 +146,7 @@ h1
         border-radius: 32px;
         box-shadow: none;
     }
-    .delete-category-content-container-inner
+    .delete-group-content-container-inner
     {
         width: 80%;
     }

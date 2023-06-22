@@ -1,48 +1,48 @@
 import './index.css'
-import { getCategories, updateCategory } from '../../repositories/category'
+import { getGroups, updateGroup } from '../../repositories/group'
 import { getTasks, updateTask } from '../../repositories/task'
 import { useDnd } from '~/utils/dnd'
 import { clickRoutingButtonsObserver } from '~/utils/element'
 export const HomePage = () => ({
   render: async () => {
     const tasks = (await getTasks()).sort((a, b) => a.order - b.order)
-    const categories = (await getCategories()).sort((a, b) => a.order - b.order)
+    const groups = (await getGroups()).sort((a, b) => a.order - b.order)
 
     const view = /*html*/ `  
     <section class="home-task-section">  
     <div id="board">  
       ${
-        categories?.length > 0
-          ? categories
+        groups?.length > 0
+          ? groups
               .map(
-                (category) => /*html*/ `  
-                <div id="${category.id}" class="category-outer">  
-                  <div  class="category" >  
-                    <div class="category-header">  
-                      <h2>${category.title}</h2>  
-                      <div class="icon-container" class="category-menu">  
-                        <p class="three-dot-icon" class="category-menu">･･･</p>  
-                        <div id="menu-container" class="menu-container category-menu" >  
-                          <ul class="category-menu">  
-                            <li value="${category.id}" class="category-menu">  
-                              <button class="edit-category-button category-menu" value="${category.id}">  
-                                <p class="category-menu">このカテゴリを編集</p>  
+                (group) => /*html*/ `  
+                <div id="${group.id}" class="group-outer">  
+                  <div  class="group" >  
+                    <div class="group-header">  
+                      <h2>${group.title}</h2>  
+                      <div class="icon-container" class="group-menu">  
+                        <p class="three-dot-icon" class="group-menu">･･･</p>  
+                        <div id="menu-container" class="menu-container group-menu" >  
+                          <ul class="group-menu">  
+                            <li value="${group.id}" class="group-menu">  
+                              <button class="edit-group-button group-menu" value="${group.id}">  
+                                <p class="group-menu">このグループを編集</p>  
                               </button>  
                             </li>  
-                            <li value="${category.id}" class="category-menu">  
-                              <button class="delete-category-button category-menu" value="${category.id}">  
-                                  <p style="color: #c00;" class="category-menu">このカテゴリを削除</p>  
+                            <li value="${group.id}" class="group-menu">  
+                              <button class="delete-group-button group-menu" value="${group.id}">  
+                                  <p style="color: #c00;" class="group-menu">このグループを削除</p>  
                               </button>  
                             </li>  
                           </ul>  
                         </div>  
                       </div>  
                     </div>  
-                    <div id="category-cards" class="category-cards" >  
+                    <div id="group-cards" class="group-cards" >  
                       ${
                         tasks?.length > 0
                           ? tasks
-                              .filter((task) => task?.categoryIDs?.length && task?.categoryIDs[0] === category.id)
+                              .filter((task) => task?.groupIDs?.length && task?.groupIDs[0] === group.id)
                               ?.map(
                                 (task) => /*html*/ `  
                                 <div class="card-outer" id="${task.id}">  
@@ -56,8 +56,8 @@ export const HomePage = () => ({
                           : ''
                       }  
                     </div>  
-                    <div class="category-footer">  
-                      <button value="${category.id}" class="add-task-button">タスク追加</button>  
+                    <div class="group-footer">  
+                      <button value="${group.id}" class="add-task-button">タスク追加</button>  
                     </div>  
                   </div>  
                 </div>  
@@ -66,10 +66,10 @@ export const HomePage = () => ({
               .join('\n ')
           : ''
       }  
-      <div class="add-category-outer">  
-        <div class="add-category">  
-          <button id="add-category-button" class="add-category-button">  
-            <span class="add-category-button-text">+ カテゴリーを追加</span>  
+      <div class="add-group-outer">  
+        <div class="add-group">  
+          <button id="add-group-button" class="add-group-button">  
+            <span class="add-group-button-text">+ グループを追加</span>  
           </button>  
         </div>  
       </div>  
@@ -80,12 +80,12 @@ export const HomePage = () => ({
   },
   afterRender: async () => {
     const tasks = (await getTasks()).sort((a, b) => a.order - b.order)
-    const categories = (await getCategories()).sort((a, b) => a.order - b.order)
+    const groups = (await getGroups()).sort((a, b) => a.order - b.order)
 
-    const addCategoryButton = document.getElementById('add-category-button')
-    addCategoryButton.addEventListener('click', (event) => {
+    const addGroupButton = document.getElementById('add-group-button')
+    addGroupButton.addEventListener('click', (event) => {
       event.preventDefault()
-      location.hash = `#/createCategory`
+      location.hash = `#/createGroup`
     })
 
     const iconContainers = document.querySelectorAll('.icon-container')
@@ -103,18 +103,18 @@ export const HomePage = () => ({
         childNode.style.display = 'none'
       })
     })
-    //MEMO: close the category menu by touching screen
+    //MEMO: close the group menu by touching screen
     window.ontouchstart = (event: TouchEvent) => {
       const menuContainers = document.querySelectorAll('.menu-container')
       menuContainers.forEach((menuContainer: HTMLDivElement) => {
-        if ((event.target as HTMLElement).classList.contains('category-menu')) return
+        if ((event.target as HTMLElement).classList.contains('group-menu')) return
         menuContainer.style.display = 'none'
       })
     }
     clickRoutingButtonsObserver('add-task-button', 'createTask', true)
-    clickRoutingButtonsObserver('delete-category-button', 'deleteCategory', true)
-    clickRoutingButtonsObserver('edit-category-button', 'editCategory', true)
+    clickRoutingButtonsObserver('delete-group-button', 'deleteGroup', true)
+    clickRoutingButtonsObserver('edit-group-button', 'editGroup', true)
 
-    useDnd('card-outer', 'category-outer', tasks, categories, 'categoryIDs', updateTask, updateCategory)
+    useDnd('card-outer', 'group-outer', tasks, groups, 'groupIDs', updateTask, updateGroup)
   },
 })
