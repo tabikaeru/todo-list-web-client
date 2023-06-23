@@ -54,6 +54,7 @@ export const EditGroupPage = () => ({
                   <div id="title-edit-error-message" class="edit-error-message"></div>  
                 </div>
                 <div class="form-item">  
+                  <label for="edit-group-title">順番</label>    
                   <select id="edit-group-order" name="edit-group-order">  
                     ${groups
                       .map((group) => /*html*/ `<option value="${group.id}" ${groupId === group.id ? 'selected' : ''} >${group.order + 1}</option>`)
